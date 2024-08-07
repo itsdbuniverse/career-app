@@ -43,17 +43,28 @@
         width:100%;
         height:360px;
         object-fit: cover;
+        margin-bottom: 16px;
       }
       
     </style>
   </head>
   <body>
+    {% include 'nav.html' %}
+    <img class="img fluid" id="banner" src ="https://3dce0f53-d44b-4a00-9e9f-1bf445d50f11-00-qs9f2kiivs06.sisko.replit.dev/static/wipro.jpeg" height="320">
     <div class="container">
     <h1 class='text-center mt-2 mb-4'>{{company_name}} Careers</h1>
-    <img class="img fluid" id="banner" src ="https://3dce0f53-d44b-4a00-9e9f-1bf445d50f11-00-qs9f2kiivs06.sisko.replit.dev/static/wipro.jpeg" height="320">
+    
     <h2 class='text-center mt-2 mb-4'>About Wipro</h2>
+      <div class="row"style = "margin-bottom:16px">
+        <div class="col-md-6" >
     <p class='lead'>
       Wipro India Business, a part of Wipro Limited (NYSE: WIT, BSE: 507685, NSE: WIPRO) is a leading global end to end IT transformation, consulting and business process services provider and a pioneer in Indian Market with decades of experience. We harness the power of application, cognitive computing, hyper-automation, robotics, cloud, analytics and emerging technologies to help our clients adapt to the digital world and make them successful. </p>
+          </div>
+          <div class="d-none d-md-block col-md-6">
+        <img src="/static/wip-office.jpg" style="height:320px; border-radius:4px;">
+          </div>
+        
+      </div>
     <h2 class='text-center mt-2 mb-4'>Open positions</h2>
     <div>
       {% for job in jobs %}
@@ -62,7 +73,7 @@
       
     </div>
       <div class="text-center">
-    <button class= "btn btn-primary btn-lg">Contact Us</button>
+    <a href="mailto:devendrabarkhane180@gmail.com?subject=Question%20about%20job%20openings&body=My%20name%3A%20%3Cyour%20name%20here%3E%0D%0AMy%20question%3A%20%3Center%20question%20here%3E" class= "btn btn-primary btn-lg">Contact Us</a>
         <p class="mt-">Copyright 2024</p>
       </div>
       </div>
