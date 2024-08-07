@@ -9,6 +9,8 @@ packages = [{include = "repl_nix_career_app"}]
 [tool.poetry.dependencies]
 python = "^3.12"
 flask = "^3.0.3"
+snowflake-connector-python = "^3.12.0"
+requests = "^2.32.3"
 
 
 [build-system]

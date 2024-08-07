@@ -1,5 +1,7 @@
+from typing import Required
 from flask import Flask, render_template, jsonify
-
+from db_conn import query_runner
+# from api_fetch import api_fetch
 app = Flask(__name__)
 
 JOBS = [{
@@ -27,11 +29,26 @@ JOBS = [{
 @app.route("/")
 def hello():
   return render_template("home.html", jobs=JOBS, company_name="WIPRO")
+    
 
 # json routing through api
 @app.route("/api/jobs")
 def list_jobs():
-    return jsonify(JOBS)
+    responses = query_runner(query="select * from jobs")
+    data = []
+    for response in responses:
+        id, title, location, salary, currency, responsibilities, requirements = response
+        data.append({
+            'id': id,
+            'title': title,
+            'location': location,
+            'salary': salary,
+            'currency': currency,
+            'responsibilities': responsibilities,
+            'requirements': requirements
+        })
+
+    return jsonify(data)
 
 
 if __name__ == "__main__":
