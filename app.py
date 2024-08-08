@@ -1,7 +1,9 @@
 from typing import Required
-from flask import Flask, render_template, jsonify
+from flask import Flask,request, render_template, jsonify
 from db_conn import query_runner
+from db_conn import bring_data
 from api_fetch import api_fetch
+import requests
 app = Flask(__name__)
 
 # JOBS = [{
@@ -34,41 +36,71 @@ def hello():
     responses = query_runner(query="select * from jobs")
     data = []
     for response in responses:
-        id, title, location, salary, currency, responsibilities, requirements = response
+        id, title, location, salary, currency, responsibilites, requirements = response
         data.append({
             'id': id,
             'title': title,
             'location': location,
             'salary': salary,
             'currency': currency,
-            'responsibilities': responsibilities,
-            'requirements': requirements
+            'responsibilites': responsibilites,
+            'requirements': requirements,
+            'url':f"https://3dce0f53-d44b-4a00-9e9f-1bf445d50f11-00-qs9f2kiivs06.sisko.replit.dev/api/jobs?id={id}"
         })
     return render_template("home.html", jobs=data, company_name="WIPRO")
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
 
     
 
 # json routing through api
+# @app.route("/api/jobs")
+# def list_jobs():
+#     responses = query_runner(query="select * from jobs")
+#     data = []
+#     for response in responses:
+#         id, title, location, salary, currency, responsibilities, requirements = response
+#         data.append({
+#             'id': id,
+#             'title': title,
+#             'location': location,
+#             'salary': salary,
+#             'currency': currency,
+#             'responsibilities': responsibilities,
+#             'requirements': requirements
+#         })
+    
+#     return jsonify(data)
+    
+# dynamic data for apply
 @app.route("/api/jobs")
-def list_jobs():
-    responses = query_runner(query="select * from jobs")
+def show_job():
+    
+    id=str(request.args.get('id')).strip()
+    if id is not None or id!='' or id != ' ':
+        query = f"SELECT * FROM jobs WHERE id = {id}"
+    else:
+        query = "SELECT * FROM jobs"
+    responses = bring_data(query)
+    if responses is None:
+        return jsonify({"error": "Data retrieval failed"}), 500
+
     data = []
     for response in responses:
-        id, title, location, salary, currency, responsibilities, requirements = response
+        id, title, location, salary, currency, responsibilites, requirements = response
         data.append({
             'id': id,
             'title': title,
             'location': location,
             'salary': salary,
             'currency': currency,
-            'responsibilities': responsibilities,
+            'responsibilites': responsibilites,
             'requirements': requirements
         })
-
-    return jsonify(data)
+    if not data:
+        return "Not Found", 404
+    # return jsonify(data)
+    return render_template("jobpage.html", job=data[0])
 
 
 if __name__ == "__main__":
