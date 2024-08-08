@@ -1,8 +1,8 @@
 <h4>Application form</h4>
-<form>
+<form action="/job/{{job.id}}/apply?{{id}}" method="post"">
   <div class="mb-2">
   <label>Full Name</label><br>
-  <input type="text" name="full_name" placeholder="Full Name">"
+  <input type="text" name="full_name" placeholder="Full Name">
   </div>
 
   <div class="mb-2">
@@ -30,5 +30,5 @@
     <input type="url" name="resume_url">
   </div>
 
-  <input type = "submit">
+  <input type = "submit" >
 </form>

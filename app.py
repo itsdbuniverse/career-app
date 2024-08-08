@@ -1,6 +1,6 @@
 from typing import Required
 from flask import Flask,request, render_template, jsonify
-from db_conn import query_runner
+from db_conn import add_data_to_db, query_runner
 from db_conn import bring_data
 from api_fetch import api_fetch
 import requests
@@ -102,6 +102,15 @@ def show_job():
     # return jsonify(data)
     return render_template("jobpage.html", job=data[0])
 
+@app.route("/job/<id>/apply", methods=['post'])
+def apply_to_job(id):
+    id=str(request.args.get('id')).strip()
+    data = request.form
+    add_data_to_db(job_id=data.get('job_id'), full_name=data.get('full_name'), email=data.get('email'), linkedin_url=data.get('linkedin_url'), education=data.get('education'), work_experience=data.get('work_experience'), resume_url=
+                  data.get('resume_url'))
+    
+    return render_template('application_submit.html',
+                          application=data)
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)

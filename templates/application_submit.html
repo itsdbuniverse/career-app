@@ -1,0 +1,36 @@
+<DOCTYPE html>
+  <html>
+    <head>
+      <title>
+        Application Submitted Successfully
+      </title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    </head>
+    <body>
+      {% include 'nav.html' %}
+      <img class="img fluid" id="banner" src ="https://3dce0f53-d44b-4a00-9e9f-1bf445d50f11-00-qs9f2kiivs06.sisko.replit.dev/static/wipro.jpeg" height="320">
+      <div class="container">
+      <h1 class='text-center mt-2 mb-4'>Wipro Careers</h1>
+
+        <p class='text-center mt-2 mb-4'><b>Your application has been submitted successfully</b></p>
+        <b>Full Name</b>
+        <div class="mb-2">{{application['full_name']}}</div>
+  
+        <b>Email</b>
+        <div class="mb-2">{{application['email']}}</div>
+  
+        <b>LinkedIn URl</b>
+        <div class="mb-2">{{application['linkedin_url']}}</div>
+  
+        <b>Education</b>
+        <div class="mb-2">{{application['education']}}</div>
+  
+        <b>Work Experience</b>
+        <div class="mb-2">{{application['work_experience']}}</div>
+  
+        <b>Resume URl</b>
+        <div class="mb-2">{{application['resume_url']}}</div>
+      </div>
+    </body>
