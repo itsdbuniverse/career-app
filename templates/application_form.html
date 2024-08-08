@@ -1,7 +1,9 @@
-<h4>Application form</h4>
-<form action="/job/{{job.id}}/apply?{{id}}" method="post"">
+<form action="/jobs/{{job.id}}/apply" method="post"">
   <div class="mb-2">
+
+    <input type = "hidden" readonly value={{job.id}} name = "job_id" >
   <label>Full Name</label><br>
+    
   <input type="text" name="full_name" placeholder="Full Name">
   </div>
 

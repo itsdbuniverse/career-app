@@ -43,7 +43,6 @@ def bring_data(query, params=None):
       conn.close()
 
 def add_data_to_db(*,job_id, full_name, email, linkedin_url,education, work_experience, resume_url):
-
   print("::FUNC CALLED")
   conn = snowflake.connector.connect(
       user='wproject889',
@@ -61,11 +60,9 @@ def add_data_to_db(*,job_id, full_name, email, linkedin_url,education, work_expe
       cursor.execute(query, (id,job_id, full_name, email, linkedin_url, education, work_experience, resume_url))
       conn.commit()
       print("Data added to the database successfully.")
+      
   except snowflake.connector.errors.DatabaseError as e:
       print(f"Database error: {e}")
   finally:
       cursor.close()
       conn.close()
-  
-  
-

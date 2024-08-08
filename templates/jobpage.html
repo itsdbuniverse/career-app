@@ -38,9 +38,12 @@
           {% endfor %}
         </ol>
         <h3>Salary</h3>
-        <p>{{job.currency}}{{job.salary}}</p>
-        {% include 'application_form.html' %}
+        <p>{{job.currency}}{{job.salary}}</p>  
       </div>
+
+      <h4>Application form</h4>
+      
+      {% include 'application_form.html' %}
     </body>
   </html>
 </DOCTYPE>

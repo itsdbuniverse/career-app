@@ -96,21 +96,21 @@ def show_job():
             'currency': currency,
             'responsibilites': responsibilites,
             'requirements': requirements
+            
         })
     if not data:
         return "Not Found", 404
     # return jsonify(data)
     return render_template("jobpage.html", job=data[0])
 
-@app.route("/job/<id>/apply", methods=['post'])
+@app.route("/jobs/<id>/apply",methods= ['POST'])
 def apply_to_job(id):
-    id=str(request.args.get('id')).strip()
     data = request.form
     add_data_to_db(job_id=data.get('job_id'), full_name=data.get('full_name'), email=data.get('email'), linkedin_url=data.get('linkedin_url'), education=data.get('education'), work_experience=data.get('work_experience'), resume_url=
                   data.get('resume_url'))
-    
-    return render_template('application_submit.html',
-                          application=data)
+    print("::::::::::::::")
+    return render_template('application_submit.html',application = data)
+   
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)
