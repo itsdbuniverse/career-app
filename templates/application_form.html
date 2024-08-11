@@ -3,15 +3,15 @@
 <form action="/jobs/{{job.id}}/apply" method="post"">
   <div class="mb-2">
 
-    <input class = "w-75 p-2" type = "hidden" readonly value={{job.id}} name = "job_id" >
+    <input class = "w-75 p-2" type = "hidden" readonly value={{job.id}} name = "job_id"  >
   <label>Full Name</label><br>
     
-  <input class = "w-75 p-2" type="text" name="full_name" placeholder="Full Name">
+  <input class = "w-75 p-2" type="text" name="full_name" required placeholder="Full Name">
   </div>
 
   <div class="mb-2">
   <label>Email</label><br>
-  <input class = "w-75 p-2" type="email"  name="email" placeholder="abc@gmail.com">
+  <input class = "w-75 p-2" type="email"  name="email" required placeholder="abc@gmail.com">
   </div>
 
   <div class="mb-2 ">
@@ -31,7 +31,7 @@
 
   <div class="mb-2">
     <label>Resume URL</label><br>
-    <input class = "w-75 p-1" type="url" name="resume_url">
+    <input class = "w-75 p-1" type="url" name="resume_url" required>
   </div>
 
   <input class="btn btn-secondary btn-sm" type = "submit" >
